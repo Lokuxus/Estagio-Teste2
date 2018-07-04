@@ -21,3 +21,8 @@ O programa possui 4 classes sendo elas duas classes de controle, ambas finais co
 - DBancoController
 - Pessoa
 - GerenciaView
+
+## Informações adicionais
+
+- O SQL utilizado na criação do banco está disponível no arquivo [CriacaoBanco.sql](https://github.com/Lokuxus/Estagio-Teste2/blob/master/CriacaoBanco.sql), o usuário utilizado foi o "root" com a senha "123456"
+- Para executar o projeto, basta abri-lo pela IDE Eclipse, e apertar as teclas CTRL+F11 
