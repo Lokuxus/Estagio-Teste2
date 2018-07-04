@@ -16,7 +16,7 @@ import javax.swing.table.TableModel;
 
 import model.Pessoa;
 
-public class DBancoController {
+public final class DBancoController {
 	private static String endereco = "jdbc:mariadb://localhost:3306/sattra2"; 
 	private static String[] colunasTabela = {"Nome","CPF","Telefone", "Email", "CEP", "Localidade", "Bairro", 
 			"Logradouro", "Numero", "Complemento", "UF", "Observacoes"};
@@ -189,7 +189,8 @@ public class DBancoController {
 		}
 	}
 
-	public static TableModel filtraPessoas(int opcao, String dado) {
+	public static TableModel filtraPessoas(int opcao, String valor) {
+		String dado = "%" + valor + "%";
 		DefaultTableModel modeloTabela = new DefaultTableModel(colunasTabela, 0);
 		try {
 			PreparedStatement statement;
@@ -199,22 +200,23 @@ public class DBancoController {
 			
 			switch (opcao) {
 			case 0:
-				statement = conexao.prepareStatement("select * from pessoa where cpf = ?;");
+				statement = conexao.prepareStatement("select * from pessoa where cpf like ?;");
 				statement.setString(1, dado);
 				break;
 			case 1:
-				statement = conexao.prepareStatement("select * from pessoa where cep = ?;");
-				if(dado.length() == 8) {
+				statement = conexao.prepareStatement("select * from pessoa where cep like ?;");
+				if(dado.length() == 10) {
 					StringBuilder stringbuilder = new StringBuilder();
-					stringbuilder.append(dado.substring(0, 5));
+					stringbuilder.append(dado.substring(0, 6));
 					stringbuilder.append('-');
-					stringbuilder.append(dado.substring(5));
+					stringbuilder.append(dado.substring(6));
 					dado = stringbuilder.toString();
 				}
 				statement.setString(1, dado);
 				break;
 			case 2:
-				statement = conexao.prepareStatement("select * from pessoa where uf = ?;");
+				dado = dado.toUpperCase();
+				statement = conexao.prepareStatement("select * from pessoa where uf like ?;");
 				statement.setString(1, dado);
 				break;
 			default:

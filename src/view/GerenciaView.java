@@ -32,7 +32,7 @@ import java.awt.Font;
 import javax.swing.JCheckBox;
 
 
-public class CadastroView extends JFrame {
+public class GerenciaView extends JFrame {
 
 	/**
 	 * 
@@ -63,7 +63,7 @@ public class CadastroView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroView frame = new CadastroView();
+					GerenciaView frame = new GerenciaView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,8 +75,8 @@ public class CadastroView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroView() {
-		setTitle("Cadastro Sattra Teste 2");
+	public GerenciaView() {
+		setTitle("Gerencia Sattra Teste 2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setBounds(100, 100, 1316, 714);
